@@ -2,6 +2,7 @@
 #define BEACON_HPP
 
 #include <base/Types.hpp>
+#include <base/Vector.hpp>
 
 #include <vector>
 
@@ -10,18 +11,18 @@ namespace protocol
     struct BeaconBuoyRepresentation
     {
         base::UUID buoyId {};
-        float battery {};
-        base::Position position {};
+        base::Timestamp timestamp {};
+        base::Vector position {};
     };
 
     struct Beacon
     {
         base::UUID senderId {};
+        base::Timestamp timestamp {};
+        base::Vector position {};
         bool mobile {};
-        base::Position position {};
         float battery {};
         std::vector<BeaconBuoyRepresentation> neighbors {};
-        base::Timestamp timestamp {};
     };
 }
 

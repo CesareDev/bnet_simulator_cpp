@@ -4,7 +4,7 @@
 
 namespace base
 {
-    int64_t GetTimestamp()
+    Timestamp GetTimestamp()
     {
         auto now = std::chrono::steady_clock::now().time_since_epoch();
         return std::chrono::duration_cast<std::chrono::nanoseconds>(now).count();

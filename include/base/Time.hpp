@@ -1,11 +1,11 @@
 #ifndef TIME_HPP
 #define TIME_HPP
 
-#include <cstdint>
+#include <base/Types.hpp>
 
 namespace base
 {
-    int64_t GetTimestamp();
+    Timestamp GetTimestamp();
 }
 
 #endif // !TIME_HPP

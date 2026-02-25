@@ -16,6 +16,8 @@ set(SRC_FILES
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/base/UUID.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/base/Time.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/log/Logger.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
