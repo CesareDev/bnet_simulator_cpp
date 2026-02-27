@@ -7,8 +7,7 @@ project(bnet_simulator LANGUAGES CXX)
 set(SRC_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/core/Simulator.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/core/Buoy.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/core/Event.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/node/Buoy.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/core/Channel.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/protocol/Scheduler.cpp
@@ -16,8 +15,10 @@ set(SRC_FILES
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/base/UUID.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/base/Time.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/base/Random.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/base/ConfigLoader.cpp
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/log/Logger.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/logging/Logger.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})

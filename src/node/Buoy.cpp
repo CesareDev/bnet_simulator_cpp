@@ -1,11 +1,11 @@
-#include "base/UUID.hpp"
-#include <buoy/Buoy.hpp>
+#include <base/UUID.hpp>
+#include <node/Buoy.hpp>
 
-namespace buoy
+namespace node
 {
     Buoy::Buoy(core::Channel& channel, base::Vector position, base::Vector velocity, bool is_mobile) :
         m_Channel(&channel),
-        m_Id(base::GetUUID()),
+        m_Id(base::GetRandomUUID()),
         m_Position(position),
         m_Velocity(velocity),
         m_State(BuoyState::SLEEPING),

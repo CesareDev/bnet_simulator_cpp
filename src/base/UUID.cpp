@@ -3,7 +3,7 @@
 
 namespace base
 {
-    std::string GetUUID()
+    UUID GetRandomUUID()
     {
         static std::random_device dev;
         static std::mt19937 rng(dev());
@@ -12,12 +12,12 @@ namespace base
 
         const char *v = "0123456789abcdef";
 
-        std::string res;
+        UUID res;
+        res.reserve(32);
 
-        for (int i {}; i < 16; i++)
+        for (uint8_t i {}; i < 32; ++i)
         {
-            res += v[dist(rng)];
-            res += v[dist(rng)];
+            res.push_back(v[dist(rng)]);
         }
 
         return res;

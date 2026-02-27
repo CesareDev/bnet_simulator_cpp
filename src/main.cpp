@@ -1,7 +1,6 @@
-#include <log/Logger.hpp>
+#include <base/ConfigLoader.hpp>
 
 int main()
 {
-    logging::FATAL("main", "Ciao");
     return 0;
 }

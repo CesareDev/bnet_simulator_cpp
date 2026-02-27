@@ -1,11 +1,11 @@
 #ifndef UUID_HPP
 #define UUID_HPP
 
-#include <string>
+#include <base/Types.hpp>
 
 namespace base
 {
-    std::string GetUUID();
+    UUID GetRandomUUID();
 }
 
 #endif // !UUID_HPP

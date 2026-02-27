@@ -5,7 +5,7 @@
 
 namespace base
 {
-    Timestamp GetTimestamp();
+    Timepoint GetTimepoint();
 }
 
 #endif // !TIME_HPP

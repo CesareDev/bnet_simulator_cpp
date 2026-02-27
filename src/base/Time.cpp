@@ -4,9 +4,8 @@
 
 namespace base
 {
-    Timestamp GetTimestamp()
+    Timepoint GetTimepoint()
     {
-        auto now = std::chrono::steady_clock::now().time_since_epoch();
-        return std::chrono::duration_cast<std::chrono::nanoseconds>(now).count();
+        return std::chrono::steady_clock::now();
     }
 }

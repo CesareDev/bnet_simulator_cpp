@@ -6,7 +6,7 @@
 #include <core/Channel.hpp>
 #include <protocol/Scheduler.hpp>
 
-namespace buoy
+namespace node
 {
     enum class BuoyState
     {
