@@ -12,7 +12,7 @@ namespace base
 
     void ConfigLoader::Load(const std::string& config_path)
     {
-        std::string method_name = "ConfigLoader::Load";
+        static std::string method_name = "ConfigLoader::Load";
         if (config_path.size() == 0)
         {
             // Default configuration
@@ -66,7 +66,7 @@ namespace base
 
     std::string ConfigLoader::Get(const std::string& config)
     {
-        std::string method_name = "ConfigLoader::Get";
+        static std::string method_name = "ConfigLoader::Get";
         if (m_ConfigMap.find(config) == m_ConfigMap.end())
         {
             logging::ERROR(method_name, "Configuration " + config + " not found");

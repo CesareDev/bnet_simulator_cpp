@@ -1,13 +1,23 @@
 #include <core/Simulator.hpp>
 #include <base/Time.hpp>
+#include <base/ConfigLoader.hpp>
+#include <logging/Logger.hpp>
+
+#include <iostream>
 
 namespace core
 {
-    void Simulator::Init()
+    void Simulator::Init(const std::string& config_path)
     {
-        // From configuration file, load:
-        // - Number of buoys and ratio
-        // - Duration
+        static std::string method_name = "Simulator::Init";
+
+        base::ConfigLoader& config_loader = base::ConfigLoader::Instance();
+        config_loader.Load(config_path);
+
+        m_Channel.Init(config_path);
+        m_Buoys.resize(size_t(std::stoull(config_loader.Get("BUOYS_COUNT"))));
+        m_Duration = base::DurationSeconds(std::stoi(config_loader.Get("SIM_DURATION")));
+        m_MobilePercentage = float(std::stof(config_loader.Get("MOBILE_BUOY_PERC")));
     }
 
     void Simulator::Run()
