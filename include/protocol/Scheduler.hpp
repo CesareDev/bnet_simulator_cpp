@@ -5,6 +5,8 @@ namespace protocol
 {
     class Scheduler
     {
+        public:
+            void Init();
     };
 }
 

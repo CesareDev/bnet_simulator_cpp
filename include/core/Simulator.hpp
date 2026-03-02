@@ -1,10 +1,11 @@
 #ifndef SIMULATOR_HPP
 #define SIMULATOR_HPP
 
-#include <vector>
+#include <string>
+
 #include <core/Channel.hpp>
 #include <core/Event.hpp>
-#include <node/Buoy.hpp>
+#include <node/BuoyArray.hpp>
 
 namespace core
 {
@@ -19,7 +20,7 @@ namespace core
 
         private:
             Channel m_Channel {};
-            std::vector<node::Buoy> m_Buoys {};
+            node::BuoyArray m_Buoys {};
             base::DurationSeconds m_Duration {};
             float m_MobilePercentage {};
             base::Timepoint m_SimulationTime {};

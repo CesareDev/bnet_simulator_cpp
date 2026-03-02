@@ -23,6 +23,9 @@ namespace protocol
         bool mobile {};
         float battery {};
         std::vector<BeaconBuoyRepresentation> neighbors {};
+
+        uint64_t size_in_bytes();
+        uint64_t size_in_bits();
     };
 }
 

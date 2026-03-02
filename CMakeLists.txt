@@ -7,8 +7,10 @@ project(bnet_simulator LANGUAGES CXX)
 set(SRC_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/core/Simulator.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/node/Buoy.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/core/Channel.cpp
+
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/node/Buoy.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/node/BuoyArray.cpp
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/protocol/Scheduler.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/protocol/Beacon.cpp

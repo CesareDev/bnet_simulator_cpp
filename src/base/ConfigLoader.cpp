@@ -12,7 +12,6 @@ namespace base
 
     void ConfigLoader::Load(const std::string& config_path)
     {
-        static std::string method_name = "ConfigLoader::Load";
         if (config_path.size() == 0)
         {
             // Default configuration
@@ -23,7 +22,7 @@ namespace base
 
             if (!file)
             {
-                logging::ERROR(method_name, "Error opening the configuration file: " + config_path);
+                logging::ERROR(METHOD_NAME, "Error opening the configuration file: %s", config_path.c_str());
                 return;
             }
 
@@ -44,7 +43,7 @@ namespace base
 
                 if (pos == std::string::npos)
                 {
-                    logging::ERROR(method_name, "Invalid configuration: " + line);
+                    logging::ERROR(METHOD_NAME, "Invalid configuration at: %s", line.c_str());
                     continue;
                 }
 
@@ -66,10 +65,9 @@ namespace base
 
     std::string ConfigLoader::Get(const std::string& config)
     {
-        static std::string method_name = "ConfigLoader::Get";
         if (m_ConfigMap.find(config) == m_ConfigMap.end())
         {
-            logging::ERROR(method_name, "Configuration " + config + " not found");
+            logging::ERROR(METHOD_NAME, "Configuration %s not found", config.c_str());
             return "";
         }
         return m_ConfigMap[config];

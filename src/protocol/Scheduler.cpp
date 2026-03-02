@@ -2,4 +2,7 @@
 
 namespace protocol
 {
+    void Scheduler::Init()
+    {
+    }
 }

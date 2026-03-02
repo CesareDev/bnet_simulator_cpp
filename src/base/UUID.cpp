@@ -1,25 +1,13 @@
 #include <base/UUID.hpp>
 #include <random>
 
+static thread_local std::mt19937_64 engine(std::random_device{}());
+
 namespace base
 {
     UUID GetRandomUUID()
     {
-        static std::random_device dev;
-        static std::mt19937 rng(dev());
-
-        std::uniform_int_distribution<int> dist(0, 15);
-
-        const char *v = "0123456789abcdef";
-
-        UUID res;
-        res.reserve(32);
-
-        for (uint8_t i {}; i < 32; ++i)
-        {
-            res.push_back(v[dist(rng)]);
-        }
-
-        return res;
+        static thread_local std::uniform_int_distribution<uint64_t> dist(0, UINT64_MAX);
+        return dist(engine);
     }
 }

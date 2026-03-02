@@ -7,14 +7,25 @@ BUILD_DIR="build"
 CONF_FILE="bnet.conf"
 
 CONF_FILE_STR="\
-# Simulation duration in seconds
 SIM_DURATION = 600
 
-# Number of buoys
 BUOYS_COUNT = 50
 
-# Percentage of mobile buoys
-MOBILE_BUOY_PERC = 0.10"
+MOBILE_BUOY_PERC = 0.10
+
+IDEAL_CHANNEL = 1
+
+BIT_RATE = 1000000
+
+SPEED_OF_LIGHT = 300000000
+
+COMM_RANGE_HIGH_PROB = 70.0
+
+COMM_RANGE_MAX = 120.0
+
+DELIVERY_PROB_HIGH = 0.90
+
+DELIVERY_PROB_LOW = 0.15"
 
 if [ ! -f "$CONF_FILE" ]; then
     echo "No configuration file found, creating one..."

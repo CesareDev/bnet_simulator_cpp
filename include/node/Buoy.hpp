@@ -19,15 +19,15 @@ namespace node
     class Buoy
     {
         public:
-            Buoy(core::Channel& channel, base::Vector position, base::Vector velocity, bool is_mobile);
+            void Init();
+            void Setup(base::Vector position, base::Vector velocity, bool is_mobile);
 
         private:
-            core::Channel* m_Channel {};
             base::UUID m_Id {};
             base::Vector m_Position {};
             base::Vector m_Velocity {};
-            protocol::Scheduler m_Scheduler {};
             BuoyState m_State {};
+            protocol::Scheduler m_Scheduler {};
             float m_Battery {};
             bool m_IsMobile {};
     };
