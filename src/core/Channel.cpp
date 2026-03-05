@@ -24,7 +24,9 @@ namespace core
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, e.what()); 
+            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            m_IdealChannel = true;
+            logging::INFO(METHOD_NAME, "Ideal channel fallback to: %d", m_IdealChannel);
         }
 
         std::string s_bit_rate = config_loader.Get(BIT_RATE);
@@ -35,7 +37,9 @@ namespace core
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, e.what()); 
+            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            m_BitRate = 1000000;
+            logging::INFO(METHOD_NAME, "Bit rate fallback to: %d", m_BitRate);
         }
 
         std::string s_speed_of_light = config_loader.Get(SPEED_OF_LIGHT);
@@ -46,7 +50,9 @@ namespace core
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, e.what()); 
+            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            m_SpeedOfLight = 300000000;
+            logging::INFO(METHOD_NAME, "Speed of light fallback to: %d", m_SpeedOfLight);
         }
 
         std::string s_comm_range_high_prob = config_loader.Get(COMM_RANGE_HIGH_PROB);
@@ -57,7 +63,9 @@ namespace core
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, e.what()); 
+            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            m_CommRangeHighProb = 70.f;
+            logging::INFO(METHOD_NAME, "Communication range with high probability fallback to: %f", m_CommRangeHighProb);
         }
 
         std::string s_comm_range_max = config_loader.Get(COMM_RANGE_MAX);
@@ -68,7 +76,9 @@ namespace core
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, e.what()); 
+            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            m_CommRangeMax = 120.f;
+            logging::INFO(METHOD_NAME, "Max communication range fallback to: %f", m_CommRangeMax);
         }
 
         std::string s_delivery_prob_high = config_loader.Get(DELIVERY_PROB_HIGH);
@@ -79,7 +89,9 @@ namespace core
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, e.what()); 
+            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            m_DeliveryProbHigh = 0.9f;
+            logging::INFO(METHOD_NAME, "High delivery probability fallback to: %f", m_DeliveryProbHigh);
         }
 
         std::string s_delivery_prob_low = config_loader.Get(DELIVERY_PROB_LOW);
@@ -90,11 +102,44 @@ namespace core
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, e.what()); 
+            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            m_DeliveryProbLow = 0.15f;
+            logging::INFO(METHOD_NAME, "Low delivery probability fallback to: %f", m_DeliveryProbLow);
         }
     }
 
-    void Channel::Update(EventQueue& queue, base::Timepoint SIMULATION_TIME)
+    void Channel::update(float simulation_time)
+    {
+        float max_delay = m_CommRangeMax / m_SpeedOfLight;
+        float grace_period = max_delay + 1e-6;
+        std::vector<base::UUID> expired_indeces {};
+
+        for (auto& item : m_ActiveTransmission)
+        {
+            if (item.second.end_time + grace_period < simulation_time)
+            {
+                expired_indeces.push_back(item.first);
+            }
+
+            if (m_IdealChannel)
+            {
+            }
+        }
+    }
+
+    void Channel::HandleEvent(const core::Event& event, EventQueue& queue, float simulation_time)
+    {
+        if (event.Type == EventType::CHANNEL_UPDATE)
+        {
+            update(simulation_time);
+        }
+    }
+
+    bool Channel::Broadcast(const protocol::Beacon& beacon, float simulation_time)
+    {
+    }
+
+    bool Channel::IsBusy(base::Vector position, float simulation_time)
     {
     }
 }

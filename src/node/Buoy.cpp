@@ -17,4 +17,9 @@ namespace node
         m_Battery = 100.f;
         m_IsMobile = is_mobile;
     }
+
+    void Buoy::HandleEvent(const core::Event& event, core::EventQueue& queue, float simulation_time)
+    {
+
+    }
 }

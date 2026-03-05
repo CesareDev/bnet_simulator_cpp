@@ -1,5 +1,4 @@
 #include <core/Simulator.hpp>
-#include <base/Time.hpp>
 #include <base/ConfigLoader.hpp>
 #include <logging/Logger.hpp>
 
@@ -19,12 +18,14 @@ namespace core
         std::string s_duration = config_loader.Get(SIM_DURATION);
         try
         {
-            m_Duration = base::DurationSeconds(std::stoi(s_duration));
+            m_Duration = std::stof(s_duration);
             logging::INFO(METHOD_NAME, "Simulation duration setted to: %d", m_Duration); 
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, e.what()); 
+            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            m_Duration = 600.f;
+            logging::INFO(METHOD_NAME, "Simulation duration fallback to: %d", m_Duration); 
         }
 
         std::string s_mob_perc = config_loader.Get(MOBILE_BUOY_PERC);
@@ -35,7 +36,9 @@ namespace core
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, e.what()); 
+            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            m_MobilePercentage = 0.1f;
+            logging::INFO(METHOD_NAME, "Mobile percentage fallback to: %f", m_MobilePercentage); 
         }
     }
 
@@ -59,16 +62,20 @@ namespace core
         switch (event.TargetType)
         {
             case EventTargetType::BUOY:
-                // Update the buoy array
+                m_Buoys.HandleEvent(event, m_EventQueue, m_SimulationTime);
                 break;
             case EventTargetType::CHANNEL:
-                // Update the channel
+                m_Channel.HandleEvent(event, m_EventQueue, m_SimulationTime);
                 break;
             case EventTargetType::SIMULATOR:
-                // Update the simulator
+                handleEvent(event);
                 break;
             default:
                 break;
         }
+    }
+
+    void Simulator::handleEvent(const Event& event)
+    {
     }
 }

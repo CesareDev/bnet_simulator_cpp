@@ -30,7 +30,7 @@ namespace core
 
     struct Event
     {
-        base::Timepoint Timepoint {};
+        float Timepoint {};
         base::UUID TargetUUID {};
         EventType Type {};
         EventTargetType TargetType {};

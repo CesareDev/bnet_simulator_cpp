@@ -10,6 +10,7 @@ namespace node
     {
         public:
             void Init();
+            void HandleEvent(const core::Event& event, core::EventQueue& queue, float simulation_time);
 
         private:
             std::vector<node::Buoy> m_Buoys;

@@ -17,13 +17,14 @@ namespace core
 
         private:
             void update();
+            void handleEvent(const Event& event);
 
         private:
             Channel m_Channel {};
             node::BuoyArray m_Buoys {};
-            base::DurationSeconds m_Duration {};
+            float m_Duration {};
             float m_MobilePercentage {};
-            base::Timepoint m_SimulationTime {};
+            float m_SimulationTime {};
             EventQueue m_EventQueue {};
     };
 }

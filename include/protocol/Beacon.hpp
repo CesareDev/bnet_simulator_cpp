@@ -11,14 +11,14 @@ namespace protocol
     struct BeaconBuoyRepresentation
     {
         base::UUID buoyId {};
-        base::Timepoint timestamp {};
+        float timestamp {};
         base::Vector position {};
     };
 
     struct Beacon
     {
         base::UUID senderId {};
-        base::Timepoint timestamp {};
+        float timestamp {};
         base::Vector position {};
         bool mobile {};
         float battery {};

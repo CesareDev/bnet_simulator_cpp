@@ -3,8 +3,8 @@
 
 #include <base/Types.hpp>
 #include <base/Vector.hpp>
-#include <core/Channel.hpp>
 #include <protocol/Scheduler.hpp>
+#include <core/Event.hpp>
 
 namespace node
 {
@@ -21,6 +21,7 @@ namespace node
         public:
             void Init();
             void Setup(base::Vector position, base::Vector velocity, bool is_mobile);
+            void HandleEvent(const core::Event& event, core::EventQueue& queue, float simulation_time);
 
         private:
             base::UUID m_Id {};
