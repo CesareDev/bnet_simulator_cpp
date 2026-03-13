@@ -33,4 +33,10 @@ namespace base
         static thread_local std::uniform_real_distribution<double> dist(0.0, 1.0);
         return dist(engine);
     }
+
+    uint64_t GetRandomUint64()
+    {
+        static thread_local std::uniform_int_distribution<uint64_t> dist(0, UINT64_MAX);
+        return dist(engine);
+    }
 }

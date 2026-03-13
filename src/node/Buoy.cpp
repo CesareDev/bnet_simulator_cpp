@@ -1,5 +1,5 @@
-#include <base/UUID.hpp>
 #include <node/Buoy.hpp>
+#include <base/Random.hpp>
 
 namespace node
 {
@@ -10,7 +10,7 @@ namespace node
 
     void Buoy::Setup(base::Vector position, base::Vector velocity, bool is_mobile)
     {
-        m_Id = base::GetRandomUUID();
+        m_Id = base::GetRandomUint64();
         m_Position = position;
         m_Velocity = velocity;
         m_State = BuoyState::SLEEPING;
@@ -20,6 +20,5 @@ namespace node
 
     void Buoy::HandleEvent(const core::Event& event, core::EventQueue& queue, float simulation_time)
     {
-
     }
 }

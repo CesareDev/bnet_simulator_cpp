@@ -1,8 +1,8 @@
 #ifndef EVENT_HPP
 #define EVENT_HPP
 
+#include <cstdint>
 #include <queue>
-#include <base/Types.hpp>
 
 namespace core
 {
@@ -31,7 +31,7 @@ namespace core
     struct Event
     {
         float Timepoint {};
-        base::UUID TargetUUID {};
+        uint64_t TargetUUID {};
         EventType Type {};
         EventTargetType TargetType {};
     };

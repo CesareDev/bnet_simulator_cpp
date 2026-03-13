@@ -15,7 +15,6 @@ set(SRC_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/protocol/Scheduler.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/protocol/Beacon.cpp
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/base/UUID.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/base/Random.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/base/ConfigLoader.cpp
 

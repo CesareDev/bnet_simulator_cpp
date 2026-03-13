@@ -9,7 +9,8 @@ namespace base
     void Seed();
     void Seed(uint64_t seed);
     void Shuffle(std::vector<node::Buoy>& buoys);
-    float GetRandom();
+    float GetRandomFloat();
+    uint64_t GetRandomUint64();
 }
 
 #endif // !RANDOM_HPP

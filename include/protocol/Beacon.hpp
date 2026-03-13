@@ -1,31 +1,31 @@
 #ifndef BEACON_HPP
 #define BEACON_HPP
 
-#include <base/Types.hpp>
 #include <base/Vector.hpp>
 
+#include <cstdint>
 #include <vector>
 
 namespace protocol
 {
     struct BeaconBuoyRepresentation
     {
-        base::UUID buoyId {};
+        uint64_t buoyId {};
         float timestamp {};
         base::Vector position {};
     };
 
     struct Beacon
     {
-        base::UUID senderId {};
+        uint64_t senderId {};
         float timestamp {};
         base::Vector position {};
         bool mobile {};
         float battery {};
         std::vector<BeaconBuoyRepresentation> neighbors {};
 
-        uint64_t size_in_bytes();
-        uint64_t size_in_bits();
+        uint64_t size_in_bytes() const;
+        uint64_t size_in_bits() const;
     };
 }
 

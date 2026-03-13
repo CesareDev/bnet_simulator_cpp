@@ -38,8 +38,8 @@ namespace core
             float m_DeliveryProbHigh {};
             float m_DeliveryProbLow {};
 
-            std::unordered_map<base::UUID, Trasmission> m_ActiveTransmission {};
-            std::unordered_map<base::UUID, Trasmission> m_CollidedBeacon {};
+            std::unordered_map<uint64_t, Trasmission> m_ActiveTransmission {};
+            std::unordered_map<uint64_t, Trasmission> m_CollidedBeacon {};
     };
 }
 

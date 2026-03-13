@@ -112,18 +112,24 @@ namespace core
     {
         float max_delay = m_CommRangeMax / m_SpeedOfLight;
         float grace_period = max_delay + 1e-6;
-        std::vector<base::UUID> expired_indeces {};
+        std::vector<uint64_t> expired_beacon {};
 
         for (auto& item : m_ActiveTransmission)
         {
             if (item.second.end_time + grace_period < simulation_time)
             {
-                expired_indeces.push_back(item.first);
+                expired_beacon.push_back(item.first);
             }
 
             if (m_IdealChannel)
             {
+                // ToDo: Count actually received
             }
+        }
+        
+        for (uint64_t beacon_id : expired_beacon)
+        {
+            m_ActiveTransmission.erase(beacon_id);
         }
     }
 
@@ -137,6 +143,10 @@ namespace core
 
     bool Channel::Broadcast(const protocol::Beacon& beacon, float simulation_time)
     {
+        // ToDo: count sent
+
+        float transmission_time = (float)beacon.size_in_bits() / (float)m_BitRate;
+        float new_end_time = transmission_time + simulation_time;
     }
 
     bool Channel::IsBusy(base::Vector position, float simulation_time)
