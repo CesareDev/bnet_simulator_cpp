@@ -13,6 +13,10 @@ namespace core
     {
         public:
             void Init(const std::string& config_path);
+
+            /**
+             * @brief Ciao
+             */
             void Run();
 
         private:
