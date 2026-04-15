@@ -2,7 +2,6 @@
 
 #include <ctime>
 #include <cstdarg>
-#include <iostream>
 
 static std::string get_day_and_time()
 {

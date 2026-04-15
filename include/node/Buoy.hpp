@@ -1,7 +1,6 @@
 #ifndef BUOY_HPP
 #define BUOY_HPP
 
-#include <base/Types.hpp>
 #include <base/Vector.hpp>
 #include <protocol/Scheduler.hpp>
 #include <core/Event.hpp>
@@ -24,7 +23,7 @@ namespace node
             void HandleEvent(const core::Event& event, core::EventQueue& queue, float simulation_time);
 
         private:
-            base::UUID m_Id {};
+            uint64_t m_Id {};
             base::Vector m_Position {};
             base::Vector m_Velocity {};
             BuoyState m_State {};
