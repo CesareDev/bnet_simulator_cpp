@@ -12,13 +12,13 @@ namespace node
         try
         {
             m_Buoys.resize(std::stoull(s_count));
-            logging::INFO(METHOD_NAME, "Buoy count setted to: %d", m_Buoys.size());
+            LOG_INFO("Buoy count setted to: " << m_Buoys.size());
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_Buoys.resize(50);
-            logging::INFO(METHOD_NAME, "Buoy count fallback to: %d", m_Buoys.size());
+            LOG_INFO("Buoy count fallback to: " << m_Buoys.size());
         }
     }
 

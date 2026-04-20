@@ -19,26 +19,26 @@ namespace core
         try
         {
             m_Duration = std::stof(s_duration);
-            logging::INFO(METHOD_NAME, "Simulation duration setted to: %d", m_Duration); 
+            LOG_INFO("Simulation duration setted to: " << m_Duration); 
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_Duration = 600.f;
-            logging::INFO(METHOD_NAME, "Simulation duration fallback to: %d", m_Duration); 
+            LOG_INFO("Simulation duration fallback to: " << m_Duration); 
         }
 
         std::string s_mob_perc = config_loader.Get(MOBILE_BUOY_PERC);
         try
         {
             m_MobilePercentage = float(std::stof(s_mob_perc));
-            logging::INFO(METHOD_NAME, "Mobile percentage setted to: %f", m_MobilePercentage); 
+            LOG_INFO("Mobile percentage setted to: " << m_MobilePercentage); 
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_MobilePercentage = 0.1f;
-            logging::INFO(METHOD_NAME, "Mobile percentage fallback to: %f", m_MobilePercentage); 
+            LOG_INFO("Mobile percentage fallback to: " << m_MobilePercentage); 
         }
     }
 

@@ -22,7 +22,7 @@ namespace base
 
             if (!file)
             {
-                logging::ERROR(METHOD_NAME, "Error opening the configuration file: %s", config_path.c_str());
+                LOG_ERROR("Error opening the configuration file: " << config_path);
                 return;
             }
 
@@ -43,7 +43,7 @@ namespace base
 
                 if (pos == std::string::npos)
                 {
-                    logging::ERROR(METHOD_NAME, "Invalid configuration at: %s", line.c_str());
+                    LOG_ERROR("Invalid configuration at: " << line);
                     continue;
                 }
 
@@ -67,7 +67,7 @@ namespace base
     {
         if (m_ConfigMap.find(config) == m_ConfigMap.end())
         {
-            logging::ERROR(METHOD_NAME, "Configuration %s not found", config.c_str());
+            LOG_ERROR("Configuration " << config << " not found");
             return "";
         }
         return m_ConfigMap[config];

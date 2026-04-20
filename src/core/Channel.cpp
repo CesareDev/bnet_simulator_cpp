@@ -20,91 +20,91 @@ namespace core
         try
         {
             m_IdealChannel = uint32_t(std::stoi(s_ideal_channel));
-            logging::INFO(METHOD_NAME, "Ideal channel setted to: %d", m_IdealChannel);
+            LOG_INFO("Ideal channel setted to: " << m_IdealChannel);
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_IdealChannel = true;
-            logging::INFO(METHOD_NAME, "Ideal channel fallback to: %d", m_IdealChannel);
+            LOG_INFO("Ideal channel fallback to: "<< m_IdealChannel);
         }
 
         std::string s_bit_rate = config_loader.Get(BIT_RATE);
         try
         {
             m_BitRate = uint32_t(std::stoul(s_bit_rate));
-            logging::INFO(METHOD_NAME, "Bit rate setted to: %d", m_BitRate);
+            LOG_INFO("Bit rate setted to: " << m_BitRate);
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_BitRate = 1000000;
-            logging::INFO(METHOD_NAME, "Bit rate fallback to: %d", m_BitRate);
+            LOG_INFO("Bit rate fallback to: " << m_BitRate);
         }
 
         std::string s_speed_of_light = config_loader.Get(SPEED_OF_LIGHT);
         try
         {
             m_SpeedOfLight = uint32_t(std::stoul(s_speed_of_light));
-            logging::INFO(METHOD_NAME, "Speed of light setted to: %d", m_SpeedOfLight);
+            LOG_INFO("Speed of light setted to: " << m_SpeedOfLight);
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_SpeedOfLight = 300000000;
-            logging::INFO(METHOD_NAME, "Speed of light fallback to: %d", m_SpeedOfLight);
+            LOG_INFO("Speed of light fallback to: " << m_SpeedOfLight);
         }
 
         std::string s_comm_range_high_prob = config_loader.Get(COMM_RANGE_HIGH_PROB);
         try
         {
             m_CommRangeHighProb = float(std::stof(s_comm_range_high_prob));
-            logging::INFO(METHOD_NAME, "Communication range with high probability setted to: %f", m_CommRangeHighProb);
+            LOG_INFO("Communication range with high probability setted to: " << m_CommRangeHighProb);
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_CommRangeHighProb = 70.f;
-            logging::INFO(METHOD_NAME, "Communication range with high probability fallback to: %f", m_CommRangeHighProb);
+            LOG_INFO("Communication range with high probability fallback to: " << m_CommRangeHighProb);
         }
 
         std::string s_comm_range_max = config_loader.Get(COMM_RANGE_MAX);
         try
         {
             m_CommRangeMax = float(std::stof(s_comm_range_max));
-            logging::INFO(METHOD_NAME, "Max communication range setted to: %f", m_CommRangeMax);
+            LOG_INFO("Max communication range setted to: " << m_CommRangeMax);
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_CommRangeMax = 120.f;
-            logging::INFO(METHOD_NAME, "Max communication range fallback to: %f", m_CommRangeMax);
+            LOG_INFO("Max communication range fallback to: " << m_CommRangeMax);
         }
 
         std::string s_delivery_prob_high = config_loader.Get(DELIVERY_PROB_HIGH);
         try
         {
             m_DeliveryProbHigh = float(std::stof(s_delivery_prob_high));
-            logging::INFO(METHOD_NAME, "High delivery probability setted to: %f", m_DeliveryProbHigh);
+            LOG_INFO("High delivery probability setted to: " << m_DeliveryProbHigh);
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_DeliveryProbHigh = 0.9f;
-            logging::INFO(METHOD_NAME, "High delivery probability fallback to: %f", m_DeliveryProbHigh);
+            LOG_INFO("High delivery probability fallback to: " << m_DeliveryProbHigh);
         }
 
         std::string s_delivery_prob_low = config_loader.Get(DELIVERY_PROB_LOW);
         try
         {
             m_DeliveryProbLow = float(std::stof(s_delivery_prob_low));
-            logging::INFO(METHOD_NAME, "Low delivery probability setted to: %f", m_DeliveryProbLow);
+            LOG_INFO("Low delivery probability setted to: " << m_DeliveryProbLow);
         }
         catch (const std::exception& e)
         {
-            logging::ERROR(METHOD_NAME, "Exception: %s", e.what());
+            LOG_ERROR("Exception: " << e.what());
             m_DeliveryProbLow = 0.15f;
-            logging::INFO(METHOD_NAME, "Low delivery probability fallback to: %f", m_DeliveryProbLow);
+            LOG_INFO("Low delivery probability fallback to: " << m_DeliveryProbLow);
         }
     }
 

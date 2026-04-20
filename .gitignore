@@ -20,4 +20,3 @@ CMakeUserPresets.json
 
 build/
 bnet_simulator
-*.conf

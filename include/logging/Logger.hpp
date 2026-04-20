@@ -1,20 +1,17 @@
 #ifndef LOGGER_HPP
 #define LOGGER_HPP
 
-#include <string>
-
 #if defined(_MSC_VER)
     #define METHOD_NAME __FUNCSIG__
 #else
     #define METHOD_NAME __PRETTY_FUNCTION__
 #endif
 
-namespace logging
-{
-    void DEBUG(const std::string& method_name, const char* message, ...);
-    void INFO(const std::string& method_name, const char* message, ...);
-    void ERROR(const std::string& method_name, const char* message, ...);
-    void FATAL(const std::string& method_name, const char* message, ...);
-}
+#include <iostream>
+
+#define LOG_DEBUG(msg) std::cout << "[DEBUG] [" << __DATE__ ", " << __TIME__ "] " << "[" << METHOD_NAME << "] { " << msg << " }" << std::endl
+#define LOG_INFO(msg) std::cout << "[INFO] [" << __DATE__ ", " << __TIME__ "] " << "[" << METHOD_NAME << "] { " << msg << " }" << std::endl
+#define LOG_ERROR(msg) std::cerr << "[ERROR] [" << __DATE__ ", " << __TIME__ "] " << "[" << METHOD_NAME << "] { " << msg << " }" << std::endl
+#define LOG_FATAL(msg) std::cerr << "[FATAL] [" << __DATE__ ", " << __TIME__ "] " << "[" << METHOD_NAME << "] { " << msg << " }" << std::endl
 
 #endif // !LOGGER_HPP

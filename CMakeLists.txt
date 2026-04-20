@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
+project(bnet LANGUAGES CXX)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-project(bnet_simulator LANGUAGES CXX)
+set(CMAKE_BUILD_TYPE Release)
 
 set(SRC_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
@@ -17,8 +18,6 @@ set(SRC_FILES
 
     ${CMAKE_CURRENT_SOURCE_DIR}/src/base/Random.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/base/ConfigLoader.cpp
-
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/logging/Logger.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
@@ -32,3 +31,5 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     -Wextra
     -Wpedantic
 )
+
+target_compile_definitions(${PROJECT_NAME} PRIVATE CONF_PATH="${CMAKE_CURRENT_SOURCE_DIR}/bnet.ini")
