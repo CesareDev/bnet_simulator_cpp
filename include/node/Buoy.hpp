@@ -1,6 +1,8 @@
 #ifndef BUOY_HPP
 #define BUOY_HPP
 
+#include <unordered_map>
+
 #include <base/Vector.hpp>
 #include <protocol/Scheduler.hpp>
 #include <core/Event.hpp>
@@ -15,6 +17,12 @@ namespace node
         BACKOFF
     };
 
+    struct Neighbor
+    {
+        float timestamp {};
+        base::Vector position {};
+    };
+
     class Buoy
     {
         public:
@@ -23,13 +31,40 @@ namespace node
             void HandleEvent(const core::Event& event, core::EventQueue& queue, float simulation_time);
 
         private:
+            void handleSchedulerCheck(const core::Event& event, float simulation_time);
+            void handleChannelSense(const core::Event& event, float simulation_time);
+            void handleDifsCompletion(const core::Event& event, float simulation_time);
+            void handleBackoffCompletion(const core::Event& event, float simulation_time);
+            void handleTransmissionStart(const core::Event& event, float simulation_time);
+            void handleReception(const core::Event& event, float simulation_time);
+            void handleNeighborCleanup(const core::Event& event, float simulation_time);
+            void handlBuoyMovement(const core::Event& event, float simulation_time);
+
+        private:
             uint64_t m_Id {};
             base::Vector m_Position {};
             base::Vector m_Velocity {};
             BuoyState m_State {};
+            std::unordered_map<uint64_t, Neighbor> m_Neighbors {};
             protocol::Scheduler m_Scheduler {};
             float m_Battery {};
             bool m_IsMobile {};
+
+            float m_Difstime {};
+            float m_SlotTime {};
+            uint32_t m_ContentionWindow {};
+
+            float m_NeighborTimeout {};
+            float m_WorldWidth {};
+            float m_WorldHeight {};
+            float m_SpeedOfLight {};
+            float m_CommRangeMax {};
+
+            float m_BackoffTime {};
+            float m_BackoffRemaining {};
+            float m_NextTryTime {};
+            bool m_WantToSend {};
+            float m_SchedulerDecisionTime {};
     };
 }
 
