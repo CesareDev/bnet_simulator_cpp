@@ -2,23 +2,23 @@
 #include <base/ConfigLoader.hpp>
 #include <logging/Logger.hpp>
 
+#define BUOYS_COUNT "BUOYS_COUNT"
+
 namespace node
 {
-
     void BuoyArray::Init()
     {
         base::ConfigLoader& c = base::ConfigLoader::Instance();
-        std::string s_count = c.Get("BUOYS_COUNT");
         try
         {
-            m_Buoys.resize(std::stoull(s_count));
-            LOG_INFO("Buoy count setted to: " << m_Buoys.size());
+            m_Buoys.resize(std::stoull(c.Get(BUOYS_COUNT)));
+            LOG_INFO("Configuration loaded");
         }
         catch (const std::exception& e)
         {
             LOG_ERROR("Exception: " << e.what());
+            LOG_ERROR("Fallback to the default configuration");
             m_Buoys.resize(50);
-            LOG_INFO("Buoy count fallback to: " << m_Buoys.size());
         }
     }
 

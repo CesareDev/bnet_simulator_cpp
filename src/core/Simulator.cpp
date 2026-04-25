@@ -7,38 +7,25 @@
 
 namespace core
 {
-    void Simulator::Init(const std::string& config_path)
+    void Simulator::Init()
     {
         base::ConfigLoader& config_loader = base::ConfigLoader::Instance();
-        config_loader.Load(config_path);
 
         m_Channel.Init();
         m_Buoys.Init();
 
-        std::string s_duration = config_loader.Get(SIM_DURATION);
         try
         {
-            m_Duration = std::stof(s_duration);
-            LOG_INFO("Simulation duration setted to: " << m_Duration); 
+            m_Duration = std::stof(config_loader.Get(SIM_DURATION));
+            m_MobilePercentage = std::stof(config_loader.Get(MOBILE_BUOY_PERC));
+            LOG_INFO("Configuration loaded");
         }
         catch (const std::exception& e)
         {
             LOG_ERROR("Exception: " << e.what());
+            LOG_ERROR("Fallback to the default configuration");
             m_Duration = 600.f;
-            LOG_INFO("Simulation duration fallback to: " << m_Duration); 
-        }
-
-        std::string s_mob_perc = config_loader.Get(MOBILE_BUOY_PERC);
-        try
-        {
-            m_MobilePercentage = float(std::stof(s_mob_perc));
-            LOG_INFO("Mobile percentage setted to: " << m_MobilePercentage); 
-        }
-        catch (const std::exception& e)
-        {
-            LOG_ERROR("Exception: " << e.what());
             m_MobilePercentage = 0.1f;
-            LOG_INFO("Mobile percentage fallback to: " << m_MobilePercentage); 
         }
     }
 

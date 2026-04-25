@@ -1,7 +1,7 @@
-#include <base/Random.hpp>
-
 #include <random>
 #include <algorithm>
+
+#include <base/Random.hpp>
 
 static thread_local std::mt19937_64 engine(std::random_device{}());
 
@@ -28,7 +28,7 @@ namespace base
         std::shuffle(buoys.begin(), buoys.end(), engine);
     }
 
-    float RandomValue()
+    float GetRandomFloat()
     {
         static thread_local std::uniform_real_distribution<double> dist(0.0, 1.0);
         return dist(engine);

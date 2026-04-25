@@ -1,4 +1,5 @@
 #include <fstream>
+
 #include <base/ConfigLoader.hpp>
 #include <logging/Logger.hpp>
 
@@ -12,53 +13,46 @@ namespace base
 
     void ConfigLoader::Load(const std::string& config_path)
     {
-        if (config_path.size() == 0)
-        {
-            // Default configuration
-        }
-        else
-        {
-            std::ifstream file(config_path);
+        std::ifstream file(config_path);
 
-            if (!file)
+        if (!file)
+        {
+            LOG_ERROR("Error opening the configuration file: " << config_path);
+            return;
+        }
+
+        std::string line;
+
+        while (std::getline(file, line))
+        {
+            // Trim trailing whitespaces
+            line.erase(0, line.find_first_not_of(" \t"));
+
+            // Skip empty lines or the comments 
+            if (line.empty() || line[0] == '#')
             {
-                LOG_ERROR("Error opening the configuration file: " << config_path);
-                return;
+                continue;
             }
 
-            std::string line;
+            auto pos = line.find('=');
 
-            while (std::getline(file, line))
+            if (pos == std::string::npos)
             {
-                // Trim trailing whitespaces
-                line.erase(0, line.find_first_not_of(" \t"));
+                LOG_ERROR("Invalid configuration at: " << line);
+                continue;
+            }
 
-                // Skip empty lines or the comments 
-                if (line.empty() || line[0] == '#')
-                {
-                    continue;
-                }
+            if (pos != std::string::npos)
+            {
+                auto key = line.substr(0, pos);
+                auto value = line.substr(pos + 1);
 
-                auto pos = line.find('=');
+                // Trim whitespaces from the key and the value
+                key.erase(key.find_last_not_of(" \t") + 1);
+                value.erase(0, value.find_first_not_of(" \t"));
+                value.erase(value.find_last_not_of(" \t") + 1);
 
-                if (pos == std::string::npos)
-                {
-                    LOG_ERROR("Invalid configuration at: " << line);
-                    continue;
-                }
-
-                if (pos != std::string::npos)
-                {
-                    auto key = line.substr(0, pos);
-                    auto value = line.substr(pos + 1);
-
-                    // Trim whitespaces from the key and the value
-                    key.erase(key.find_last_not_of(" \t") + 1);
-                    value.erase(0, value.find_first_not_of(" \t"));
-                    value.erase(value.find_last_not_of(" \t") + 1);
-
-                    m_ConfigMap[key] = value;
-                }
+                m_ConfigMap[key] = value;
             }
         }
     }

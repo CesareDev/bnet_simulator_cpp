@@ -1,8 +1,6 @@
 #ifndef SIMULATOR_HPP
 #define SIMULATOR_HPP
 
-#include <string>
-
 #include <core/Channel.hpp>
 #include <core/Event.hpp>
 #include <node/BuoyArray.hpp>
@@ -12,11 +10,7 @@ namespace core
     class Simulator
     {
         public:
-            void Init(const std::string& config_path);
-
-            /**
-             * @brief Ciao
-             */
+            void Init();
             void Run();
 
         private:

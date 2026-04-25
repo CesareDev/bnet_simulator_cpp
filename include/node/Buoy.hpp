@@ -1,8 +1,6 @@
 #ifndef BUOY_HPP
 #define BUOY_HPP
 
-#include <unordered_map>
-
 #include <base/Vector.hpp>
 #include <protocol/Scheduler.hpp>
 #include <core/Event.hpp>
@@ -15,12 +13,6 @@ namespace node
         RECEIVING,
         WAITING_DIFS,
         BACKOFF
-    };
-
-    struct Neighbor
-    {
-        float timestamp {};
-        base::Vector position {};
     };
 
     class Buoy
@@ -45,7 +37,7 @@ namespace node
             base::Vector m_Position {};
             base::Vector m_Velocity {};
             BuoyState m_State {};
-            std::unordered_map<uint64_t, Neighbor> m_Neighbors {};
+            node::NeighborsMap m_Neighbors {};
             protocol::Scheduler m_Scheduler {};
             float m_Battery {};
             bool m_IsMobile {};
