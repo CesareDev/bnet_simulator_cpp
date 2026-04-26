@@ -9,15 +9,15 @@ namespace core
 {
     void Simulator::Init()
     {
-        base::ConfigLoader& config_loader = base::ConfigLoader::Instance();
+        base::ConfigLoader& c = base::ConfigLoader::Instance();
 
         m_Channel.Init();
         m_Buoys.Init();
 
         try
         {
-            m_Duration = std::stof(config_loader.Get(SIM_DURATION));
-            m_MobilePercentage = std::stof(config_loader.Get(MOBILE_BUOY_PERC));
+            m_Duration = std::stof(c.Get(SIM_DURATION));
+            m_MobilePercentage = std::stof(c.Get(MOBILE_BUOY_PERC));
             LOG_INFO("Configuration loaded");
         }
         catch (const std::exception& e)

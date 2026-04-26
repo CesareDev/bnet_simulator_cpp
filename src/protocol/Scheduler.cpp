@@ -18,16 +18,16 @@ namespace protocol
 {
     void Scheduler::Init()
     {
-        base::ConfigLoader& config_loader = base::ConfigLoader::Instance();
+        base::ConfigLoader& c = base::ConfigLoader::Instance();
         try
         {
-            m_MinInterval = std::stof(config_loader.Get(BEACON_MIN_INTERVAL));
-            m_MaxInterval = std::stof(config_loader.Get(BEACON_MAX_INTERVAL));
-            m_StaticInterval = std::stof(config_loader.Get(BEACON_STATIC_INTERVAL));
-            m_NeighborThreshold = std::stoi(config_loader.Get(NEIGHBORS_THRESHOLD));
-            m_ContactThreshold = std::stof(config_loader.Get(CONTACT_THRESHOLD));
-            m_DefaultVelocty = std::stof(config_loader.Get(DEFAULT_BUOY_VELOCITY));
-            std::string mode = config_loader.Get(SCHEDULER_MODE);
+            m_MinInterval = std::stof(c.Get(BEACON_MIN_INTERVAL));
+            m_MaxInterval = std::stof(c.Get(BEACON_MAX_INTERVAL));
+            m_StaticInterval = std::stof(c.Get(BEACON_STATIC_INTERVAL));
+            m_NeighborThreshold = std::stoi(c.Get(NEIGHBORS_THRESHOLD));
+            m_ContactThreshold = std::stof(c.Get(CONTACT_THRESHOLD));
+            m_DefaultVelocty = std::stof(c.Get(DEFAULT_BUOY_VELOCITY));
+            std::string mode = c.Get(SCHEDULER_MODE);
             if (mode == "Static")
                 m_Mode = SchedulerMode::Static;
             if (mode == "ADAB")

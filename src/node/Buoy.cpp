@@ -55,7 +55,7 @@ namespace node
 
     void Buoy::handleSchedulerCheck(const core::Event &event, float simulation_time)
     {
-        // bool should_send = m_Scheduler.ShouldSend(m_Battery, m_Velocity, m_Neighbors, simulation_time)
+        bool should_send = m_Scheduler.ShouldSend(m_Battery, m_Velocity, m_Neighbors, simulation_time);
     }
 
     void Buoy::handleChannelSense(const core::Event& event, float simulation_time)

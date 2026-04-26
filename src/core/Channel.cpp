@@ -14,17 +14,17 @@ namespace core
 {
     void Channel::Init()
     {
-        base::ConfigLoader& config_loader = base::ConfigLoader::Instance();
+        base::ConfigLoader& c = base::ConfigLoader::Instance();
 
         try
         {
-            m_IdealChannel = std::stoi(config_loader.Get(IDEAL_CHANNEL));
-            m_BitRate = std::stoul(config_loader.Get(BIT_RATE));
-            m_SpeedOfLight = std::stoul(config_loader.Get(SPEED_OF_LIGHT));
-            m_CommRangeHighProb = std::stof(config_loader.Get(COMM_RANGE_HIGH_PROB));
-            m_CommRangeMax = std::stof(config_loader.Get(COMM_RANGE_MAX));
-            m_DeliveryProbHigh = std::stof(config_loader.Get(DELIVERY_PROB_HIGH));
-            m_DeliveryProbLow = std::stof(config_loader.Get(DELIVERY_PROB_LOW));
+            m_IdealChannel = std::stoi(c.Get(IDEAL_CHANNEL));
+            m_BitRate = std::stoul(c.Get(BIT_RATE));
+            m_SpeedOfLight = std::stoul(c.Get(SPEED_OF_LIGHT));
+            m_CommRangeHighProb = std::stof(c.Get(COMM_RANGE_HIGH_PROB));
+            m_CommRangeMax = std::stof(c.Get(COMM_RANGE_MAX));
+            m_DeliveryProbHigh = std::stof(c.Get(DELIVERY_PROB_HIGH));
+            m_DeliveryProbLow = std::stof(c.Get(DELIVERY_PROB_LOW));
             LOG_INFO("Configuration loaded");
         }
         catch (const std::exception& e)

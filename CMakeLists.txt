@@ -28,5 +28,3 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     -Wextra
     -Wpedantic
 )
-
-target_compile_definitions(${PROJECT_NAME} PRIVATE CONF_PATH="${CMAKE_CURRENT_SOURCE_DIR}/bnet.ini")
