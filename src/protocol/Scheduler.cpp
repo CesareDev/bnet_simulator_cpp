@@ -74,10 +74,18 @@ namespace protocol
         }
     }
 
+    float Scheduler::GetNextCheckInterval()
+    {
+        if (m_Mode == SchedulerMode::Static)
+            return m_StaticInterval;
+        else
+            return m_NextSendTime;
+    }
+
     bool Scheduler::shouldSendStatic(float sim_time)
     {
         float time_since_last = sim_time - m_LastSendTime;
-        if (time_since_last > m_NextSendTime)
+        if (time_since_last > m_StaticInterval)
         {
             m_LastSendTime = sim_time;
             return true;

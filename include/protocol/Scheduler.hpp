@@ -20,6 +20,7 @@ namespace protocol
         public:
             void Init();
             bool ShouldSend(float battery, base::Vector velocity, const node::NeighborsMap& neighbors, float sim_time);
+            float GetNextCheckInterval();
 
         private:
             bool shouldSendStatic(float sim_time);

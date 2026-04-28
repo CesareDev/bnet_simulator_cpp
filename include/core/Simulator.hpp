@@ -21,7 +21,6 @@ namespace core
             Channel m_Channel {};
             node::BuoyArray m_Buoys {};
             float m_Duration {};
-            float m_MobilePercentage {};
             float m_SimulationTime {};
             EventQueue m_EventQueue {};
     };

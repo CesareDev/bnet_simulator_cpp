@@ -3,7 +3,6 @@
 #include <logging/Logger.hpp>
 
 #define SIM_DURATION "SIM_DURATION"
-#define MOBILE_BUOY_PERC "MOBILE_BUOY_PERC"
 
 namespace core
 {
@@ -17,7 +16,6 @@ namespace core
         try
         {
             m_Duration = std::stof(c.Get(SIM_DURATION));
-            m_MobilePercentage = std::stof(c.Get(MOBILE_BUOY_PERC));
             LOG_INFO("Configuration loaded");
         }
         catch (const std::exception& e)
@@ -25,7 +23,6 @@ namespace core
             LOG_ERROR("Exception: " << e.what());
             LOG_ERROR("Fallback to the default configuration");
             m_Duration = 600.f;
-            m_MobilePercentage = 0.1f;
         }
     }
 

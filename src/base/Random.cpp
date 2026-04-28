@@ -39,4 +39,10 @@ namespace base
         static thread_local std::uniform_int_distribution<uint64_t> dist(0, UINT64_MAX);
         return dist(engine);
     }
+
+    int32_t GetRandomInt32Range(int32_t min, int32_t max)
+    {
+        static thread_local std::uniform_int_distribution<int32_t> dist(min, max);
+        return dist(engine);
+    }
 }

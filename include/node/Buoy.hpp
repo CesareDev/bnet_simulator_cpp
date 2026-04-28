@@ -4,6 +4,7 @@
 #include <base/Vector.hpp>
 #include <protocol/Scheduler.hpp>
 #include <core/Event.hpp>
+#include <core/Channel.hpp>
 
 namespace node
 {
@@ -20,17 +21,17 @@ namespace node
         public:
             void Init();
             void Setup(base::Vector position, base::Vector velocity, bool is_mobile);
-            void HandleEvent(const core::Event& event, core::EventQueue& queue, float simulation_time);
+            void HandleEvent(const core::Event& event, core::EventQueue& queue, core::Channel& channel, float simulation_time);
 
         private:
-            void handleSchedulerCheck(const core::Event& event, float simulation_time);
-            void handleChannelSense(const core::Event& event, float simulation_time);
-            void handleDifsCompletion(const core::Event& event, float simulation_time);
-            void handleBackoffCompletion(const core::Event& event, float simulation_time);
-            void handleTransmissionStart(const core::Event& event, float simulation_time);
-            void handleReception(const core::Event& event, float simulation_time);
-            void handleNeighborCleanup(const core::Event& event, float simulation_time);
-            void handlBuoyMovement(const core::Event& event, float simulation_time);
+            void handleSchedulerCheck(const core::Event& event, core::EventQueue& queue, core::Channel& channel, float simulation_time);
+            void handleChannelSense(const core::Event& event, core::EventQueue& queue, core::Channel& channel, float simulation_time);
+            void handleDifsCompletion(const core::Event& event, core::EventQueue& queue, core::Channel& channel, float simulation_time);
+            void handleBackoffCompletion(const core::Event& event, core::EventQueue& queue, core::Channel& channel, float simulation_time);
+            void handleTransmissionStart(const core::Event& event, core::EventQueue& queue, core::Channel& channel, float simulation_time);
+            void handleReception(const core::Event& event, core::EventQueue& queue, core::Channel& channel, float simulation_time);
+            void handleNeighborCleanup(const core::Event& event, core::EventQueue& queue, core::Channel& channel, float simulation_time);
+            void handlBuoyMovement(const core::Event& event, core::EventQueue& queue, core::Channel& channel, float simulation_time);
 
         private:
             uint64_t m_Id {};
@@ -42,7 +43,7 @@ namespace node
             float m_Battery {};
             bool m_IsMobile {};
 
-            float m_Difstime {};
+            float m_DifsTime {};
             float m_SlotTime {};
             uint32_t m_ContentionWindow {};
 
@@ -54,6 +55,7 @@ namespace node
 
             float m_BackoffTime {};
             float m_BackoffRemaining {};
+            float m_BackoffStartedTime {};
             float m_NextTryTime {};
             bool m_WantToSend {};
             float m_SchedulerDecisionTime {};
